@@ -1,0 +1,56 @@
+#include <stdio.h>
+int n,m;
+
+void sum_(int f,int k,int l,int w[],int d[])
+{
+	if(f==m)
+	{
+		printf("\nThe Array d is: \n");
+		int j;
+		for (j=0;j<n;j++)
+		{
+			
+			printf("%d",d[j]);
+			printf("\t");
+		}
+	}
+	else 
+	{	
+	if(f+w[k]<=m && k!=n)
+	{
+		d[k]=1;
+		sum_(f+w[k],k+1,l-w[k],w,d);	
+	}
+	if(f+l-w[k]>=m && k!=n)
+	{
+		d[k]=0;
+		sum_(f,k+1,l-w[k],w,d);
+	}
+	}
+	
+}
+void main()
+{	printf("Enter the Size of the Set: ");
+	scanf("%d",&n);
+	printf("\n");
+	int w[n],d[n];	
+	int i,f,l,sum;
+	printf("Enter the sets element: \n");
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&w[i]);
+	}
+	printf("The Sum you Want to find: \n");
+	scanf("%d",&m);	
+	for(i=0;i<n;i++)
+	{
+		sum=sum+w[i];
+	}
+	f=0;
+	l=sum;
+	for(i=0;i<n;i++)
+	{
+		d[i]=0;
+	}
+	sum_(f,0,l,w,d);
+}
